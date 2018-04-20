@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include 'head.html' %}
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            {% include 'header.html' %}
+            {% include 'left_sidebar.html' %}
+            <!-- Content Wrapper. Contains page content -->
+            {% block content %} {% endblock content %}
+            {% include 'footer.html' %}
+            {% include 'right_sidebar.html' %}
+        </div>
+        {% include 'bottom_scripts.html' %}
+    </body>
+</html>

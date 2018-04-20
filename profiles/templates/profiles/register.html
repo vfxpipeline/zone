@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>
+        {% include 'title.html' %}
+    </title>
+    <link rel="stylesheet" href="/static/third_party/bootstrap-3.3.7/css/bootstrap.min.css">
+    <!-- START Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/icons/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/icons/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/icons/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/icons/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/icons/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/icons/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/static/icons/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/icons/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/icons/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/icons/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- END Favicon -->
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+        }
+
+        video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            transform: translateX(-50%) translateY(-50%);
+            background: url('/static/videos/bg/bg.jpg') no-repeat;
+            background-size: cover;
+            transition: 1s opacity;
+        }
+
+        .stopfade {
+            opacity: .5;
+        }
+
+        #polina {
+            font-family: Agenda-Light, Agenda Light, Agenda, Arial Narrow, sans-serif;
+            font-weight: 100;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 2rem;
+            width: 30%;
+            border-radius: 10px;
+            margin: 2rem;
+            display: inline-block;
+            margin-top: 10%;
+            margin-left: 35%;
+            font-size: 1.2rem;
+        }
+
+        @media screen and (max-width: 500px) {
+            div {
+                width: 70%;
+            }
+        }
+
+        @media screen and (max-device-width: 800px) {
+            html {
+                background: url(/static/videos/bg/bg.jpg) #000 no-repeat center center fixed;
+            }
+
+            #bgvid {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<video poster="/static/videos/bg/bg.jpg" id="bgvid" playsinline autoplay muted loop>
+    <source src="/static/videos/bg/office.webm" type="video/webm">
+</video>
+<div id="polina">
+    <a href="/"> <img src="/static/icons/logo/banner.png" alt="Logo" width="100%" height="150"></a>
+    <div class="panel-body authentication_panel_body">
+        <h2 class="text-center f-w-300 m-b-0">User Registration</h2>
+        <form role="form" method="post" action="">
+            <div class="form-group">
+                <input name="username" class="form-control" placeholder="Enter a Username..."
+                       required="required">
+            </div>
+            <div class="form-group">
+                <input name="password1" type="password" class="form-control"
+                       placeholder="Enter a Password..." required="required">
+            </div>
+            <div class="form-group">
+                <input name="password2" type="password" class="form-control"
+                       placeholder="Repeat Password..." required="required">
+            </div>
+            <div class="form-group">
+                <input name="email" class="form-control" placeholder="Enter a Email..."
+                       required="required">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" required="required"> Accept Terms &amp; Privacy Policy
+                </label>
+            </div>
+            <input type="submit" class="btn m-b-2 btn-block btn-primary" value="Register">
+            {% csrf_token %}
+        </form>
+        {{ message | safe }}
+    </div>
+</div>
+</body>
+</html>
