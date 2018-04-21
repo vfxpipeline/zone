@@ -1,0 +1,209 @@
+[
+  {
+    "model": "renderbox.settings",
+    "pk": 1,
+    "fields": {
+      "windows_repository_path": "C:\\RenderBOX",
+      "linux_repository_path": "/renderbox"
+    }
+  },
+  {
+    "model": "renderbox.jobstatus",
+    "pk": 1,
+    "fields": {
+      "name": "Queued",
+      "icon": "static/icons/status/queued.png"
+    }
+  },
+  {
+    "model": "renderbox.jobstatus",
+    "pk": 2,
+    "fields": {
+      "name": "Running",
+      "icon": "static/icons/status/running.png"
+    }
+  },
+  {
+    "model": "renderbox.jobstatus",
+    "pk": 3,
+    "fields": {
+      "name": "Completed",
+      "icon": "static/icons/status/completed.png"
+    }
+  },
+  {
+    "model": "renderbox.jobstatus",
+    "pk": 4,
+    "fields": {
+      "name": "Error",
+      "icon": "static/icons/status/error.png"
+    }
+  },
+  {
+    "model": "renderbox.jobstatus",
+    "pk": 5,
+    "fields": {
+      "name": "Canceled",
+      "icon": "static/icons/status/canceled.png"
+    }
+  },
+  {
+    "model": "renderbox.clientstatus",
+    "pk": 1,
+    "fields": {
+      "name": "Idle",
+      "icon": "static/icons/status/idle.png"
+    }
+  },
+  {
+    "model": "renderbox.clientstatus",
+    "pk": 2,
+    "fields": {
+      "name": "Active",
+      "icon": "static/icons/status/active.png"
+    }
+  },
+  {
+    "model": "renderbox.clientstatus",
+    "pk": 3,
+    "fields": {
+      "name": "Off",
+      "icon": "static/icons/status/off.png"
+    }
+  },
+  {
+    "model": "renderbox.clientstatus",
+    "pk": 4,
+    "fields": {
+      "name": "Error",
+      "icon": "static/icons/status/error_fzojZ7Y.png"
+    }
+  },
+  {
+    "model": "renderbox.app",
+    "pk": 1,
+    "fields": {
+      "name": "Maya 2015",
+      "icon": "static/icons/apps/maya.png",
+      "win_exe": "C:\\Program Files\\Autodesk\\Maya2015\\bin\\maya.exe",
+      "linux_exe": "/path"
+    }
+  },
+  {
+    "model": "renderbox.app",
+    "pk": 2,
+    "fields": {
+      "name": "Houdini 15",
+      "icon": "static/icons/apps/houdini.png",
+      "win_exe": "C:\\Program Files\\Side Effects Software\\Houdini 15.5.632\\bin",
+      "linux_exe": "/path"
+    }
+  },
+  {
+    "model": "renderbox.app",
+    "pk": 3,
+    "fields": {
+      "name": "Blender",
+      "icon": "static/icons/apps/blender.png",
+      "win_exe": "C:\\Program Files\\Blender Foundation\\Blender\\blender.exe",
+      "linux_exe": null
+    }
+  },
+  {
+    "model": "renderbox.app",
+    "pk": 4,
+    "fields": {
+      "name": "After Effects",
+      "icon": "static/icons/apps/afx.png",
+      "win_exe": "C:\\Program Files\\Adobe\\Adobe After Effects CS5\\Support Files",
+      "linux_exe": null
+    }
+  },
+  {
+    "model": "renderbox.app",
+    "pk": 5,
+    "fields": {
+      "name": "Nuke",
+      "icon": "static/icons/apps/nuke.png",
+      "win_exe": "C:\\Program Files\\Nuke9.0v6",
+      "linux_exe": null
+    }
+  },
+  {
+    "model": "renderbox.department",
+    "pk": 1,
+    "fields": {
+      "name": "Animation"
+    }
+  },
+  {
+    "model": "renderbox.department",
+    "pk": 2,
+    "fields": {
+      "name": "VFX"
+    }
+  },
+  {
+    "model": "renderbox.department",
+    "pk": 3,
+    "fields": {
+      "name": "Lighting"
+    }
+  },
+  {
+    "model": "renderbox.department",
+    "pk": 4,
+    "fields": {
+      "name": "Rendering"
+    }
+  },
+  {
+    "model": "renderbox.department",
+    "pk": 5,
+    "fields": {
+      "name": "Composting"
+    }
+  },
+  {
+    "model": "renderbox.department",
+    "pk": 6,
+    "fields": {
+      "name": "Editing"
+    }
+  },
+  {
+    "model": "renderbox.department",
+    "pk": 7,
+    "fields": {
+      "name": "Research"
+    }
+  },
+  {
+    "model": "renderbox.jobcategory",
+    "pk": 1,
+    "fields": {
+      "name": "Rendering"
+    }
+  },
+  {
+    "model": "renderbox.jobcategory",
+    "pk": 2,
+    "fields": {
+      "name": "Simulation"
+    }
+  },
+  {
+    "model": "renderbox.jobcategory",
+    "pk": 3,
+    "fields": {
+      "name": "Caching"
+    }
+  },
+  {
+    "model": "renderbox.jobcategory",
+    "pk": 4,
+    "fields": {
+      "name": "Computing"
+    }
+  }
+]

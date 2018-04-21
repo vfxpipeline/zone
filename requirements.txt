@@ -1,0 +1,5 @@
+django==1.11.12
+djangorestframework
+wmi
+pywin32
+psutil

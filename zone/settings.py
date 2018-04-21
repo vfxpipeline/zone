@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'core',
     'profiles',
     'renderbox',
+    'rest_framework',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',

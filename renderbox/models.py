@@ -145,3 +145,10 @@ class Task(models.Model):
     end_time = models.DateTimeField()
     process_id = models.IntegerField()
     progress = models.FloatField()
+
+
+class Department(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name

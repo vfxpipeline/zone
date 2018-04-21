@@ -9,4 +9,6 @@ admin.site.register(ClientStatus)
 admin.site.register(App)
 admin.site.register(Group)
 admin.site.register(Settings)
+admin.site.register(Department)
+
 
