@@ -12,7 +12,7 @@
     "pk": 1,
     "fields": {
       "name": "Queued",
-      "icon": "static/icons/status/queued.png"
+      "icon": "icons/status/queued.png"
     }
   },
   {
@@ -20,7 +20,7 @@
     "pk": 2,
     "fields": {
       "name": "Running",
-      "icon": "static/icons/status/running.png"
+      "icon": "icons/status/running.png"
     }
   },
   {
@@ -28,7 +28,7 @@
     "pk": 3,
     "fields": {
       "name": "Completed",
-      "icon": "static/icons/status/completed.png"
+      "icon": "icons/status/completed.png"
     }
   },
   {
@@ -36,7 +36,7 @@
     "pk": 4,
     "fields": {
       "name": "Error",
-      "icon": "static/icons/status/error.png"
+      "icon": "icons/status/error.png"
     }
   },
   {
@@ -44,7 +44,7 @@
     "pk": 5,
     "fields": {
       "name": "Canceled",
-      "icon": "static/icons/status/canceled.png"
+      "icon": "icons/status/canceled.png"
     }
   },
   {
@@ -52,7 +52,7 @@
     "pk": 1,
     "fields": {
       "name": "Idle",
-      "icon": "static/icons/status/idle.png"
+      "icon": "icons/status/idle.png"
     }
   },
   {
@@ -60,7 +60,7 @@
     "pk": 2,
     "fields": {
       "name": "Active",
-      "icon": "static/icons/status/active.png"
+      "icon": "icons/status/active.png"
     }
   },
   {
@@ -68,7 +68,7 @@
     "pk": 3,
     "fields": {
       "name": "Off",
-      "icon": "static/icons/status/off.png"
+      "icon": "icons/status/off.png"
     }
   },
   {
@@ -76,7 +76,7 @@
     "pk": 4,
     "fields": {
       "name": "Error",
-      "icon": "static/icons/status/error_fzojZ7Y.png"
+      "icon": "icons/status/error_fzojZ7Y.png"
     }
   },
   {
@@ -84,7 +84,7 @@
     "pk": 1,
     "fields": {
       "name": "Maya 2015",
-      "icon": "static/icons/apps/maya.png",
+      "icon": "icons/apps/maya.png",
       "win_exe": "C:\\Program Files\\Autodesk\\Maya2015\\bin\\maya.exe",
       "linux_exe": "/path"
     }
@@ -94,7 +94,7 @@
     "pk": 2,
     "fields": {
       "name": "Houdini 15",
-      "icon": "static/icons/apps/houdini.png",
+      "icon": "icons/apps/houdini.png",
       "win_exe": "C:\\Program Files\\Side Effects Software\\Houdini 15.5.632\\bin",
       "linux_exe": "/path"
     }
@@ -104,7 +104,7 @@
     "pk": 3,
     "fields": {
       "name": "Blender",
-      "icon": "static/icons/apps/blender.png",
+      "icon": "icons/apps/blender.png",
       "win_exe": "C:\\Program Files\\Blender Foundation\\Blender\\blender.exe",
       "linux_exe": null
     }
@@ -114,7 +114,7 @@
     "pk": 4,
     "fields": {
       "name": "After Effects",
-      "icon": "static/icons/apps/afx.png",
+      "icon": "icons/apps/afx.png",
       "win_exe": "C:\\Program Files\\Adobe\\Adobe After Effects CS5\\Support Files",
       "linux_exe": null
     }
@@ -124,7 +124,7 @@
     "pk": 5,
     "fields": {
       "name": "Nuke",
-      "icon": "static/icons/apps/nuke.png",
+      "icon": "icons/apps/nuke.png",
       "win_exe": "C:\\Program Files\\Nuke9.0v6",
       "linux_exe": null
     }

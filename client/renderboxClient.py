@@ -61,41 +61,9 @@ class RenderboxClientClass(QtGui.QMainWindow, client.Ui_MainWindow):
         # lets populate system information in gui on separate thread
         thread.start_new_thread(self.populate_client_configurations, ())
         thread.start_new_thread(self.populate_client_specifications, ())
-        thread.start_new_thread(self.register_client, ())
 
     def closeEvent(self, *args, **kwargs):
         self.deleteLater()
-
-    def register_client(self):
-        data = {
-            "description": 'Renderbox client node activated',
-            "status": 1,
-            "os_platform": os_platform(),
-            "os_name": os_name(),
-            "os_username": user(),
-            "os_arch": os_arch(),
-            "host_name": host_name(),
-            "idle_time": 0.0,
-            "rendering_time": 0.0,
-            "up_time": up_time(),
-            "cpu_name": processor(),
-            "cpu_core": processor_core(),
-            "l2_cache": l2_cache(),
-            "l3_cache": l3_cache(),
-            "cpu_usage": cpu_usage(),
-            "total_ram": total_ram(),
-            "ram_usage": ram_usage_percent(),
-            "available_ram": available_ram(),
-            "gpu_card": gpu_card(),
-            "gpu_memory": gpu_memory(),
-            "network_adapter": 'None',
-            "network_speed": network_speed(),
-            "ip_address": ip_address(),
-            "mac_address": mac_address(),
-            "client_register_time": str(datetime.datetime.now())
-        }
-        url = "http://{}/api/renderbox/client/".format(self.__server__)
-        requests.post(url, data=data)
 
     def populate_client_configurations(self):
         url = "http://{}/api/renderbox/client/".format(self.__server__)
@@ -131,9 +99,6 @@ class RenderboxClientClass(QtGui.QMainWindow, client.Ui_MainWindow):
         self.l3_cache_LE.setText(l3_cache())
         self.hostname_LE.setText(host_name())
         self.gpu_memory_LE.setText(gpu_memory())
-
-    def remove_client(self):
-        pass
 
 
 if __name__ == '__main__':

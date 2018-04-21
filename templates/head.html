@@ -4,31 +4,35 @@
 
 
 <!-- START Favicon -->
-<link rel="apple-touch-icon" sizes="57x57" href="/static/icons/favicon/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="/static/icons/favicon/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/static/icons/favicon/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="/static/icons/favicon/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/static/icons/favicon/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/static/icons/favicon/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/static/icons/favicon/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/static/icons/favicon/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/static/icons/favicon/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="/static/icons/favicon/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/static/icons/favicon/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon/favicon-16x16.png">
-<link rel="manifest" href="/static/icons/favicon/manifest.json">
+<link rel="apple-touch-icon" sizes="57x57" href="/media/icons/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/media/icons/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/media/icons/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/media/icons/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/media/icons/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/media/icons/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/media/icons/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/media/icons/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/media/icons/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/media/icons/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/media/icons/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/media/icons/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/media/icons/favicon/favicon-16x16.png">
+<link rel="manifest" href="/media/icons/favicon/manifest.json">
 <meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/static/icons/favicon/ms-icon-144x144.png">
+<meta name="msapplication-TileImage" content="/media/icons/favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 <!-- END Favicon -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117929376-1"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-117929376-1');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-117929376-1');
 </script>
 
 <!-- Tell the browser to be responsive to screen width -->
@@ -41,10 +45,11 @@
       href="/static/third_party/AdminLTE-2.4.3/bower_components/font-awesome/css/font-awesome.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet" href="/static/third_party/AdminLTE-2.4.3/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="/static/third_party/AdminLTE-2.4.3/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-  <!-- Morris charts -->
-  <link rel="stylesheet" href="/static/third_party/AdminLTE-2.4.3/bower_components/morris.js/morris.css">
+{#<!-- DataTables -->#}
+{#<link rel="stylesheet"#}
+{#      href="/static/third_party/AdminLTE-2.4.3/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">#}
+<!-- Morris charts -->
+<link rel="stylesheet" href="/static/third_party/AdminLTE-2.4.3/bower_components/morris.js/morris.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="/static/third_party/AdminLTE-2.4.3/dist/css/AdminLTE.min.css">
 <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -53,8 +58,20 @@
 
 <link rel="stylesheet" href="/static/third_party/select2/select2.min.css">
 
+
+
+<!-- Include Datatable CSS-->
+<link rel="stylesheet" href="/static/third_party/DataTables-1.10.15/media/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="/static/third_party/DataTables-1.10.15/extensions/Buttons/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="/static/third_party/DataTables-1.10.15/extensions/Buttons/css/buttons.bootstrap.min.css">
+<link rel="stylesheet" href="/static/third_party/DataTables-1.10.15/extensions/Responsive/css/responsive.dataTables.min.css">
+<link rel="stylesheet" href="/static/third_party/DataTables-1.10.15/extensions/Responsive/css/responsive.bootstrap.min.css">
+<link rel="stylesheet" href="/static/third_party/DataTables-1.10.15/extensions/Select/css/select.dataTables.min.css">
+
+
+
 {#<style>#}
-    {#    DARK THEME CSS#}
+{#    DARK THEME CSS#}
 {#    .content-wrapper, .box, .box-footer, .main-footer {#}
 {#        background-color: rgba(35, 35, 35, 0.5);#}
 {#    }#}

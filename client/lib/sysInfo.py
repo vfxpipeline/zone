@@ -255,6 +255,8 @@ def gpu_card():
 def gpu_memory():
     if platform.system() == 'Windows':
         import wmi
+        import pythoncom
+        pythoncom.CoInitialize()
         computer = wmi.WMI()
         gpu_info = computer.Win32_VideoController()[0]
         mem = abs(gpu_info.AdapterRAM)

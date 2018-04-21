@@ -1,5 +1,5 @@
 from django.db import models
-from profiles.models import Profile, Department
+from profiles.models import Profile
 
 
 class Settings(models.Model):
@@ -55,6 +55,13 @@ class Client(models.Model):
         return self.os_username
 
 
+class Department(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 class Group(models.Model):
     """
     Groups can be used to organize your farm based on machine configurations (e.g., specs, installed software, etc).
@@ -90,7 +97,7 @@ class JobCategory(models.Model):
 
 class Job(models.Model):
     category = models.ForeignKey(JobCategory, on_delete=models.CASCADE, related_name='+')
-    name = models.CharField(max_length=255, null=True, blank=True )
+    name = models.CharField(max_length=255, null=True, blank=True)
     comment = models.CharField(max_length=255, null=True, blank=True)
     assign_clients = models.ManyToManyField(Client, blank=True)
     group = models.ManyToManyField(Group, blank=True)
@@ -104,7 +111,7 @@ class Job(models.Model):
                        ('high', 'High'),
                        ('critical', 'Critical')
                        )
-    priority = models.CharField(max_length=50, default='low', choices=priority_choice,  blank=True)
+    priority = models.CharField(max_length=50, default='low', choices=priority_choice, blank=True)
     app = models.ForeignKey(App, on_delete=models.CASCADE, related_name='+')
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='+')
     file_path = models.CharField(max_length=255)
@@ -121,10 +128,10 @@ class Job(models.Model):
         ('nothing', 'Nothing'),
         ('movie', 'Build Movie'),
         ('archive', 'Archive'),
-                     ('restart', 'Restart'),
-                     ('shutdown', 'Shutdown'),
-                     ('delete', 'Delete')
-                     )
+        ('restart', 'Restart'),
+        ('shutdown', 'Shutdown'),
+        ('delete', 'Delete')
+    )
     on_job_complete = models.CharField(max_length=50, default='nothing', choices=post_complete, null=True, blank=True)
 
 
@@ -145,10 +152,3 @@ class Task(models.Model):
     end_time = models.DateTimeField()
     process_id = models.IntegerField()
     progress = models.FloatField()
-
-
-class Department(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
