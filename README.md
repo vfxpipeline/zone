@@ -1,37 +1,58 @@
-## Welcome to GitHub Pages
+## Welcome to Computing Zone
 
-You can use the [editor on GitHub](https://github.com/vfxpipeline/zone/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Zone is a python based web application design and develop for cluster computing task destributions and monitoring which include services like - Rendering, Caching, Heavy Calculation, Data Mining and other resources hungry process.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This project is Opensource and Free. Created for learning purpose with no commercial interest by RAJIV SHARMA (http://technicaldirector.in/). 
 
-### Markdown
+Feel free to download, fork or contribute in this project code. 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+
+### What Zone will do ?
+
+distribute big computing task into small chunks and split into many computers. then keep track of task progress status. Alert you in the events of errors or completions.
 
 ```markdown
-Syntax highlighted code block
+TECHNOLOGY USED IN THE BACKEND
+# Python 3
+# Django Web Framework
+# Django Rest Framework
+# HTML - CSS - JAVASCRIPT
+# PyQt UI Gramework
+# MYSQL Database
+# Cross Platform Clents - Windows, Linux, Mac
+# Web Based Monitor - Can be access from any device (Phone, Tab, PC, Laptop)
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### About Developer
+RAJIV SHARMA - 10 Years of experience in Computer Graphics Industry. Recent 4 Years of experience in Programing, Recent 2 Years of experience in Web Application Development. Currently Working as a Technology Supervisor in Leading Animation and Gaming Production studio.
 
-### Jekyll Themes
+### Licence
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/vfxpipeline/zone/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Copyright (c) 2018, RAJIV SHARMA(www.TechnicalDirector.in) . All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
 
-### Support or Contact
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+
+    * Neither the name of RAJIV SHARMA(www.TechnicalDirector.in) nor the names of any
+      other contributors to this software may be used to endorse or
+      promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
