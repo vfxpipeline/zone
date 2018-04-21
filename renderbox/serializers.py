@@ -33,10 +33,12 @@ from .models import Client, Job
 
 
 class ClientSerializer(serializers.ModelSerializer):
+    ip_address = serializers.IPAddressField(required=False)
 
     class Meta:
         model = Client
         fields = '__all__'
+        depth = 1
 
 
 class JobSerializer(serializers.ModelSerializer):

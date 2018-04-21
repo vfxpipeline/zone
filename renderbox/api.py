@@ -31,6 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.http import Http404
 from .models import Client, Job
 from .serializers import ClientSerializer, JobSerializer
 
@@ -39,9 +40,20 @@ class ClientAPI(APIView):
     """
     Add View Edit and delete client computers
     """
+    def get_client(self, mac_address):
+        try:
+            return Client.objects.get(mac_address=mac_address)
+        except Client.DoesNotExist:
+            raise Http404
+
     def get(self, request):
-        serializer = ClientSerializer(Client.objects.all(), many=True)
+        mac_address = request.data.get('mac_address', False)
+        if mac_address:
+            serializer = ClientSerializer(self.get_client(mac_address))
+        else:
+            serializer = ClientSerializer(Client.objects.all(), many=True)
         return Response(serializer.data)
+
 
     def post(self, request):
         serializer = ClientSerializer(data=request.data)
@@ -50,25 +62,19 @@ class ClientAPI(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-class ClientEditAPI(APIView):
-    """
-    Edit and delete client computers
-    """
-    def get(self, request, client_id):
-        serializer = ClientSerializer(Client.objects.get(pk=client_id))
-        return Response(serializer.data)
-
-    def put(self, request, client_id):
-        serializer = ClientSerializer(Client.objects.get(pk=client_id), data=request.data)
+    def put(self, request):
+        mac_address = request.data.get('mac_address', False)
+        if not mac_address:
+            return Response('Invalid Client MAC Address', status=status.HTTP_400_BAD_REQUEST)
+        serializer = ClientSerializer(self.get_client(mac_address), data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, client_id):
-        model_object = Client.objects.all().filter(id=client_id)
-        model_object.delete()
+    def delete(self, request):
+        mac_address = request.data.get('mac_address', False)
+        self.get_client(mac_address).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
@@ -86,25 +92,4 @@ class JobAPI(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class JobEditAPI(APIView):
-    """
-    Edit and delete client computers
-    """
-    def get(self, request, job_id):
-        serializer = JobSerializer(Job.objects.get(pk=job_id))
-        return Response(serializer.data)
-
-    def put(self, request, job_id):
-        serializer = JobSerializer(Job.objects.get(pk=job_id), data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, job_id):
-        model_object = Job.objects.all().filter(id=job_id)
-        model_object.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
 
