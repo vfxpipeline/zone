@@ -22,7 +22,7 @@ TECHNOLOGY USED IN THE BACKEND
 # Django Web Framework
 # Django Rest Framework
 # HTML - CSS - JAVASCRIPT
-# PyQt UI Gramework
+# PyQt UI Framework
 # MYSQL Database
 # Cross Platform Clents - Windows, Linux, Mac
 # Web Based Monitor - Can be access from any device (Phone, Tab, PC, Laptop)
