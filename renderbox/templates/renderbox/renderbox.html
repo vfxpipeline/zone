@@ -378,8 +378,6 @@
         </section>
     </div>
 
-
-
     <script>
         var selected_job_config = {
             type: 'line',
@@ -464,73 +462,112 @@
                 responsive: true
             }
         };
-        var client_resource_config = {
-            type: 'line',
-            data: {
-                labels: Array.from(Array(8).keys()), // create a array with numbers [1,2,3,4,5....10]
-                datasets: [{
-                    label: "CPU usage",
-                    borderColor: window.chartColors.red,
-                    backgroundColor: window.chartColors.red,
-                    data: [15, 40, 65, 40, 29, 55, 64, 26, 15],
-                    fill: false
-                }, {
-                    label: "RAM usage",
-                    borderColor: window.chartColors.blue,
-                    backgroundColor: window.chartColors.blue,
-                    data: [15, 12, 14, 18, 40, 35, 25, 13, 45],
-                    fill: false
-                }, {
-                    label: "LAN usage",
-                    borderColor: window.chartColors.green,
-                    backgroundColor: window.chartColors.green,
-                    data: [15, 16, 15, 11, 19, 75, 66, 46, 12],
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                title: {
-                    display: true,
-                    text: "Host Name - ELITEBOOK"
-                },
-                tooltips: {
-                    mode: 'index',
-                },
-                hover: {
-                    mode: 'index'
-                },
-                scales: {
-                    xAxes: [{
-                        display: false,
-                        scaleLabel: {
-                            display: true,
-                            labelString: '60 Seconds'
-                        }
-                    }],
-                    yAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: '% Utilization'
-                        },
-                        ticks: {
-                            min: 0,
-                            max: 100,
-                            stepSize: 20
-                        }
-                    }]
-                }
-            }
-        };
+
         window.onload = function () {
             var selected_job_line_chart = document.getElementById("selected-job-canvas").getContext("2d");
             window.myLine = new Chart(selected_job_line_chart, selected_job_config);
             var jobs_report_pie = document.getElementById("jobs-chart-area").getContext("2d");
             window.myPie = new Chart(jobs_report_pie, jobs_report_pie_config);
-            var client_resource_usage = document.getElementById("client_resource_usage_canvas").getContext("2d");
-            window.myLine = new Chart(client_resource_usage, client_resource_config);
 
         };
+
+        var cpu_usage = [];
+        var ram_usage = [];
+        var lan_usage = [];
+        var client_resource_config = {};
+        function load_client_resource(){
+            var client_data_raw = $.ajax({
+                type: "get",
+                url: '/api/renderbox/client/' + 2 + '/?format=json',
+                data: {mac_address: "2C:41:38:0D:E1:15"},
+                dataType: "application/json",
+                contentType: "application/json",
+                async: false
+            }).responseText;
+            var client_data = JSON.parse(client_data_raw);
+            cpu_usage.unshift(client_data['cpu_usage']);
+            if (cpu_usage.length > 9) {
+                cpu_usage.length = 9;
+            }
+            ram_usage.unshift(client_data['ram_usage']);
+            if (ram_usage.length > 9) {
+                ram_usage.length = 9;
+            }
+            client_resource_config = {
+                type: 'line',
+                data: {
+                    labels: Array.from(Array(8).keys()), // create a array with numbers [1,2,3,4,5....10]
+                    datasets: [{
+                        label: "CPU usage",
+                        borderColor: window.chartColors.red,
+                        backgroundColor: window.chartColors.red,
+                        data: cpu_usage,
+                        fill: false
+                    }, {
+                        label: "RAM usage",
+                        borderColor: window.chartColors.blue,
+                        backgroundColor: window.chartColors.blue,
+                        data: ram_usage,
+                        fill: false
+                    }, {
+                        label: "LAN usage",
+                        borderColor: window.chartColors.green,
+                        backgroundColor: window.chartColors.green,
+                        data: lan_usage,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: "Host Name - ELITEBOOK"
+                    },
+                    tooltips: {
+                        mode: 'index',
+                    },
+                    hover: {
+                        mode: 'index'
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: false,
+                            scaleLabel: {
+                                display: true,
+                                labelString: '60 Seconds'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: '% Utilization'
+                            },
+                            ticks: {
+                                min: 0,
+                                max: 100,
+                                stepSize: 20
+                            }
+                        }]
+                    }
+                }
+            };
+        }
+
+        load_client_resource();
+        window.onload = function () {
+            var client_resource_usage = document.getElementById("client_resource_usage_canvas").getContext("2d");
+            window.myLine = new Chart(client_resource_usage, client_resource_config);
+            setInterval(function(){
+                load_client_resource();
+                window.myLine.update();
+                }, 3000);
+            };
+
+
+
+
+
+
         $(function () {
             $('#jobs_table').DataTable();
             $('#client_task_table').DataTable();
@@ -555,7 +592,6 @@
 
                     {
                         "data": "status", "class": "v-a-m ", "render": function (status, type, row) {
-                            console.log(status);
                             return `<div class="media media-auto">
                                         <div class="media-left">
                                             <div class="avatar">
@@ -681,6 +717,5 @@
             /* END INTERACTIVE CHART */
         })
     </script>
-
 
 {% endblock content %}

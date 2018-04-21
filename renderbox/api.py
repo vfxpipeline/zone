@@ -54,7 +54,6 @@ class ClientAPI(APIView):
             serializer = ClientSerializer(Client.objects.all(), many=True)
         return Response(serializer.data)
 
-
     def post(self, request):
         serializer = ClientSerializer(data=request.data)
         if serializer.is_valid():
@@ -76,6 +75,21 @@ class ClientAPI(APIView):
         mac_address = request.data.get('mac_address', False)
         self.get_client(mac_address).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ClientDataAPI(APIView):
+    """
+    get client computer information
+    """
+    def get_client(self, client_id):
+        try:
+            return Client.objects.get(id=client_id)
+        except Client.DoesNotExist:
+            raise Http404
+
+    def get(self, request, client_id):
+        serializer = ClientSerializer(self.get_client(client_id))
+        return Response(serializer.data)
 
 
 class JobAPI(APIView):
