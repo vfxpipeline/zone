@@ -1,5 +1,5 @@
 ## Welcome to Computing Zone
-
+![alt text](http://technicaldirector.in/renderbox2/screenshot/zone1.png)
 Zone is a python based web application design and develop for cluster computing task destributions and monitoring which include services like - Rendering, Caching, Heavy Calculation, Data Mining and other resources hungry process.
 
 This project is opensource and Free. Created by RAJIV SHARMA (http://technicaldirector.in). 
