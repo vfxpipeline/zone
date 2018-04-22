@@ -8,7 +8,7 @@
     <title>
         {% include 'title.html' %}
     </title>
-    <link rel="stylesheet" href="/static/third_party/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- START Favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="/media/icons/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/media/icons/favicon/apple-icon-60x60.png">
@@ -44,7 +44,7 @@
             height: auto;
             z-index: -100;
             transform: translateX(-50%) translateY(-50%);
-            background: url('/static/videos/bg/bg.jpg') no-repeat;
+            background: url('http://technicaldirector.in/renderbox/images/banner.jpg') no-repeat;
             background-size: cover;
             transition: 1s opacity;
         }
@@ -76,7 +76,7 @@
 
         @media screen and (max-device-width: 800px) {
             html {
-                background: url(/static/videos/bg/bg.jpg) #000 no-repeat center center fixed;
+                background: url(http://technicaldirector.in/renderbox/images/banner.jpg) #000 no-repeat center center fixed;
             }
 
             #bgvid {
@@ -87,9 +87,8 @@
     </style>
 </head>
 <body>
-<video poster="/static/videos/bg/bg.jpg" id="bgvid" playsinline autoplay muted loop>
-    <source src="/static/videos/bg/ruinen.webm" type="video/webm">
-{#    <source src="/static/videos/bg/Flying-Birds.mp4" type="video/webm">#}
+<video poster="http://technicaldirector.in/renderbox/images/banner.jpg" id="bgvid" playsinline autoplay muted loop>
+    <source src="http://technicaldirector.in/bg_vid/ruinen.webm" type="video/webm">
 </video>
 <div id="polina">
     <a href="/"> <img src="/media/icons/logo/banner.png" alt="Logo" width="100%" height="25%"></a>

@@ -1,0 +1,17 @@
+I am not including third party library in this git repository.
+you can download and copy inside this folder or use CDN links.
+
+1. AdminLTE
+https://github.com/almasaeed2010/AdminLTE/archive/v2.4.3.zip
+
+2. Bootstrap
+https://github.com/twbs/bootstrap/releases/download/v3.3.7/bootstrap-3.3.7-dist.zip
+
+3. DataTables
+https://datatables.net/download/builder?bs/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5
+
+4. Chart JS
+https://github.com/chartjs/Chart.js/archive/v2.7.2.zip
+
+5. Fancybox
+https://github.com/fancyapps/fancybox/archive/v3.3.5.zip
