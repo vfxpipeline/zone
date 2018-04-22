@@ -1,15 +1,12 @@
 ## Welcome to Computing Zone
+This project is free and opensource. Design and Development by RAJIV SHARMA (http://technicaldirector.in). 
+
 ![alt text](http://technicaldirector.in/renderbox2/screenshot/zone1.png)
-Zone is a python based web application design and develop for cluster computing task destributions and monitoring which include services like - Rendering, Caching, Heavy Calculation, Data Mining and other resources hungry process.
-
-This project is opensource and Free. Created by RAJIV SHARMA (http://technicaldirector.in). 
-
-Feel free to download, fork or contribute in this project code. 
+Zone is a python based web application design and develop for cluster computing task distributions and monitoring which include services like - Rendering, caching, heavy calculations, data mining and other resources hungry process.
 
 ![alt text](http://technicaldirector.in/renderbox2/screenshot/screen01.jpg)
 ![alt text](http://technicaldirector.in/renderbox2/screenshot/screen02.PNG)
 ![alt text](http://technicaldirector.in/renderbox2/screenshot/screen05.PNG)
-
 
 
 ### What Zone will do ?
@@ -61,3 +58,6 @@ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+### Watch VFX Pipeline Free Video Tutorials
+https://www.youtube.com/vfxpipeline
