@@ -1,5 +1,9 @@
 django==1.11.12
-djangorestframework
-wmi
-pywin32
-psutil
+djangorestframework==3.8.2
+django-widget-tweaks==1.4.2
+pywin32==223
+psutil==5.4.2
+Pillow==4.3.0
+python3-memcached==1.51
+requests==2.18.4
+wmi==1.4.9
