@@ -152,7 +152,7 @@ class RenderboxClientTrayClass(object):
             }
             req = requests.put(url, data=data)
             print(req.status_code, data)
-            time.sleep(2)
+            time.sleep(1)
 
 
 if __name__ == '__main__':

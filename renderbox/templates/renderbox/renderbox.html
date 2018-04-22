@@ -462,7 +462,6 @@
                 responsive: true
             }
         };
-
         window.onload = function () {
             var selected_job_line_chart = document.getElementById("selected-job-canvas").getContext("2d");
             window.myLine = new Chart(selected_job_line_chart, selected_job_config);
@@ -470,18 +469,77 @@
             window.myPie = new Chart(jobs_report_pie, jobs_report_pie_config);
 
         };
+        var empty_client_resource_config = {
+            type: 'line',
+            data: {
+                labels: Array.from(Array(8).keys()), // create a array with numbers [1,2,3,4,5....10]
+                datasets: [{
+                    label: "CPU usage",
+                    borderColor: window.chartColors.red,
+                    backgroundColor: window.chartColors.red,
+                    data: [],
+                    fill: false
+                }, {
+                    label: "RAM usage",
+                    borderColor: window.chartColors.blue,
+                    backgroundColor: window.chartColors.blue,
+                    data: [],
+                    fill: false
+                }, {
+                    label: "LAN usage",
+                    borderColor: window.chartColors.green,
+                    backgroundColor: window.chartColors.green,
+                    data: [],
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: ""
+                },
+                tooltips: {
+                    mode: 'index',
+                },
+                hover: {
+                    mode: 'index'
+                },
+                scales: {
+                    xAxes: [{
+                        display: false,
+                        scaleLabel: {
+                            display: true,
+                            labelString: '60 Seconds'
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: '% Utilization'
+                        },
+                        ticks: {
+                            min: 0,
+                            max: 100,
+                            stepSize: 20
+                        }
+                    }]
+                }
+            }
+        };
+        var client_resource_usage = document.getElementById("client_resource_usage_canvas").getContext("2d");
+        var client_resource_chart = new Chart(client_resource_usage, empty_client_resource_config);
+        var client_resource_config = {};
 
         var cpu_usage = [];
         var ram_usage = [];
         var lan_usage = [];
-        var client_resource_config = {};
-        function load_client_resource(){
+
+        function load_client_resource(client_id) {
             var client_data_raw = $.ajax({
                 type: "get",
-                url: '/api/renderbox/client/' + 2 + '/?format=json',
-                data: {mac_address: "2C:41:38:0D:E1:15"},
+                url: '/api/renderbox/client/' + client_id + '/?format=json',
                 dataType: "application/json",
-                contentType: "application/json",
                 async: false
             }).responseText;
             var client_data = JSON.parse(client_data_raw);
@@ -521,7 +579,7 @@
                     responsive: true,
                     title: {
                         display: true,
-                        text: "Host Name - ELITEBOOK"
+                        text: "Host Name: " + client_data['host_name'] + "       IP: " + client_data['ip_address']
                     },
                     tooltips: {
                         mode: 'index',
@@ -553,26 +611,9 @@
             };
         }
 
-        load_client_resource();
-        window.onload = function () {
-            var client_resource_usage = document.getElementById("client_resource_usage_canvas").getContext("2d");
-            window.myLine = new Chart(client_resource_usage, client_resource_config);
-            setInterval(function(){
-                load_client_resource();
-                window.myLine.update();
-                }, 3000);
-            };
-
-
-
-
-
-
         $(function () {
             $('#jobs_table').DataTable();
             $('#client_task_table').DataTable();
-
-
             var all_clients_url = "/api/renderbox/client/?format=json";
             var farm_table = $('#farm_table').DataTable({
                 dom: 'Blfrtip',
@@ -587,9 +628,8 @@
                     dataSrc: ''
                 },
                 columns: [
-                    {"data": "id", "visible": true},
+                    {"data": "id", "class": "client_id", "visible": true},
                     {"data": "description", "visible": true},
-
                     {
                         "data": "status", "class": "v-a-m ", "render": function (status, type, row) {
                             return `<div class="media media-auto">
@@ -607,8 +647,6 @@
                                     </div>`;
                         }
                     },
-
-
                     {"data": "os_platform", "visible": true},
                     {"data": "os_name", "visible": false},
                     {"data": "os_username", "visible": false},
@@ -634,6 +672,38 @@
                     {"data": "sync_interval", "visible": false},
 
                 ]
+
+            });
+            var refresh_interval = null;
+            // ON CLICK EVENT ON FARM TABLE
+            farm_table.on('click', 'tr', function () {
+                if (refresh_interval) {
+                    clearInterval(refresh_interval);
+                }
+                if (client_resource_chart) {
+                    client_resource_chart.destroy();
+                }
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                    client_resource_chart = new Chart(client_resource_usage, empty_client_resource_config);
+                }
+                else {
+                    farm_table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    var client_id = $(this).closest('tr').children('td.client_id').text();
+                    // FIRST CLEAR EXISTING USAGE ARRAY
+                    cpu_usage.length = 0;
+                    ram_usage.length = 0;
+                    lan_usage.length = 0;
+                    load_client_resource(client_id);
+                    client_resource_chart = new Chart(client_resource_usage, client_resource_config);
+                    client_resource_chart.update();
+                    refresh_interval = setInterval(function () {
+                        load_client_resource(client_id);
+                        client_resource_chart.update();
+                    }, 1000);
+
+                }
 
             });
 
