@@ -61,3 +61,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ### Watch VFX Pipeline Free Video Tutorials
 https://www.youtube.com/vfxpipeline
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=mt3y8Yali08
+" target="_blank"><img src="http://img.youtube.com/vi/mt3y8Yali08/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="320" height="180" border="10" /></a>
+
