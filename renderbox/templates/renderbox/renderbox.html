@@ -67,42 +67,33 @@
                                         <table id="jobs_table" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
+                                                <th>App</th>
                                                 <th>Department</th>
-                                                <th>Group</th>
                                                 <th>Category</th>
+                                                <th>Group</th>
+
                                                 <th>Name</th>
                                                 <th>Comment</th>
                                                 <th>Status</th>
                                                 <th>Priority</th>
-                                                <th>App</th>
+
                                                 <th>Start Frame</th>
                                                 <th>End Frame</th>
                                                 <th>Start Time</th>
                                                 <th>End Time</th>
-                                                <th>Submit by</th>
                                                 <th>Submit Time</th>
+                                                <th>Submit by</th>
                                                 <th>Submit PC</th>
+                                                <th>Submit IP</th>
+
+                                                <th>Chunk Size</th>
+                                                <th>File Path</th>
+                                                <th>File Size</th>
+                                                <th>Project Path</th>
+                                                <th>Output Path</th>
+
                                             </tr>
                                             </thead>
-                                            <tfoot>
-                                            <tr>
-                                                <th>Department</th>
-                                                <th>Group</th>
-                                                <th>Category</th>
-                                                <th>Name</th>
-                                                <th>Comment</th>
-                                                <th>Status</th>
-                                                <th>Priority</th>
-                                                <th>App</th>
-                                                <th>Start Frame</th>
-                                                <th>End Frame</th>
-                                                <th>Start Time</th>
-                                                <th>End Time</th>
-                                                <th>Submit by</th>
-                                                <th>Submit Time</th>
-                                                <th>Submit PC</th>
-                                            </tr>
-                                            </tfoot>
                                         </table>
                                     </div>
                                     <!-- /.box-body -->
@@ -217,23 +208,20 @@
                                         <table id="client_task_table" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
-                                                <th>Rendering engine</th>
-                                                <th>Browser</th>
-                                                <th>Platform(s)</th>
-                                                <th>Engine version</th>
-                                                <th>CSS grade</th>
+                                                <th>Process ID</th>
+                                                <th>Task ID</th>
+                                                <th>Status</th>
+                                                <th>Progress</th>
+                                                <th>Start Frame</th>
+                                                <th>End Frame</th>
+                                                <th>Wip Frame</th>
+
+                                                <th>Start Time</th>
+                                                <th>End Time</th>
+
                                             </tr>
                                             </thead>
 
-                                            <tfoot>
-                                            <tr>
-                                                <th>Rendering engine</th>
-                                                <th>Browser</th>
-                                                <th>Platform(s)</th>
-                                                <th>Engine version</th>
-                                                <th>CSS grade</th>
-                                            </tr>
-                                            </tfoot>
                                         </table>
                                     </div>
                                     <!-- /.box-body -->
@@ -613,7 +601,7 @@
 
         $(function () {
             $('#jobs_table').DataTable();
-            $('#client_task_table').DataTable();
+
             var all_clients_url = "/api/renderbox/client/?format=json";
             var farm_table = $('#farm_table').DataTable({
                 dom: 'Blfrtip',
@@ -674,6 +662,7 @@
                 ]
 
             });
+            var client_task_table = $('#client_task_table').DataTable();
             var refresh_interval = null;
             // ON CLICK EVENT ON FARM TABLE
             farm_table.on('click', 'tr', function () {

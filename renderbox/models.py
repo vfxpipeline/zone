@@ -96,59 +96,69 @@ class JobCategory(models.Model):
 
 
 class Job(models.Model):
+    app = models.ForeignKey(App, on_delete=models.CASCADE, related_name='+')
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='+')
     category = models.ForeignKey(JobCategory, on_delete=models.CASCADE, related_name='+')
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='+')
+
     name = models.CharField(max_length=255, null=True, blank=True)
     comment = models.CharField(max_length=255, null=True, blank=True)
-    assign_clients = models.ManyToManyField(Client, blank=True)
-    group = models.ManyToManyField(Group, blank=True)
-    submit_time = models.DateTimeField(auto_now_add=True)
-    file_size = models.FloatField(null=True, blank=True)
-    project_path = models.CharField(max_length=255, null=True, blank=True)
-    output_path = models.CharField(max_length=255, null=True, blank=True)
+    status = models.ForeignKey(JobStatus, default=5, on_delete=models.CASCADE, related_name='+')
     priority_choice = (('low', 'Low'),
                        ('normal', 'Normal'),
                        ('medium', 'Medium'),
                        ('high', 'High'),
-                       ('critical', 'Critical')
-                       )
+                       ('critical', 'Critical'))
     priority = models.CharField(max_length=50, default='low', choices=priority_choice, blank=True)
-    app = models.ForeignKey(App, on_delete=models.CASCADE, related_name='+')
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='+')
-    file_path = models.CharField(max_length=255)
-    status = models.ForeignKey(JobStatus, default=5, on_delete=models.CASCADE, related_name='+')
+
     start_frame = models.FloatField()
     end_frame = models.FloatField()
     start_time = models.DateTimeField(null=True, blank=True)
     end_time = models.DateTimeField(null=True, blank=True)
-    submit_user = models.ForeignKey(Profile, related_name='submit_user')
-    chunk_size = models.IntegerField(default=1)
+    submit_time = models.DateTimeField(auto_now_add=True)
+    submit_by = models.ForeignKey(Profile, related_name='submit_by')
     submit_pc = models.CharField(max_length=100, null=True, blank=True)
     submit_ip = models.GenericIPAddressField(null=True, blank=True)
-    post_complete = (
-        ('nothing', 'Nothing'),
+
+    post_complete = (('nothing', 'Nothing'),
         ('movie', 'Build Movie'),
         ('archive', 'Archive'),
         ('restart', 'Restart'),
         ('shutdown', 'Shutdown'),
-        ('delete', 'Delete')
-    )
+        ('delete', 'Delete'))
     on_job_complete = models.CharField(max_length=50, default='nothing', choices=post_complete, null=True, blank=True)
+
+    chunk_size = models.IntegerField(default=1)
+    file_path = models.CharField(max_length=255)
+    file_size = models.FloatField(null=True, blank=True)
+    project_path = models.CharField(max_length=255, null=True, blank=True)
+    output_path = models.CharField(max_length=255, null=True, blank=True)
+
+    assign_clients = models.ManyToManyField(Client, blank=True)
 
 
 class Task(models.Model):
     """
     Job will split into small multiple task and split into all available clients
     """
-    job = models.ForeignKey(Job, on_delete=models.CASCADE)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    status = models.ForeignKey(JobStatus, on_delete=models.CASCADE)
-    start_frame = models.FloatField()
-    wip_frame = models.FloatField()
-    end_frame = models.FloatField()
-    complete_frames = models.CharField(max_length=255)
-    error_frames = models.CharField(max_length=255)
-    queued_frames = models.CharField(max_length=255)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='+')
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='+')
     process_id = models.IntegerField()
+    status = models.ForeignKey(JobStatus, on_delete=models.CASCADE, related_name='+')
     progress = models.FloatField()
+    start_frame = models.FloatField()
+    end_frame = models.FloatField()
+    wip_frame = models.FloatField()
+    start_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
+
+
+class Frame(models.Model):
+    """
+    Task Frame information
+    """
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='+')
+    frame_number = models.IntegerField()
+    status = models.ForeignKey(JobStatus, on_delete=models.CASCADE, related_name='+')
+    start_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
