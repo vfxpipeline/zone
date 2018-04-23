@@ -183,7 +183,7 @@
                             <div class="col-lg-5">
                                 <div class="box box-info">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title">Client Resource Usages</h3>
+                                        <h3 id="client_resource_title" class="box-title">Client Resource Usages</h3>
                                         <div class="box-tools pull-right">
                                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                                     class="fa fa-minus"></i>
@@ -197,7 +197,7 @@
                                 </div>
                                 <div class="box box-info">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title">Task Running on - 192.168.4.575 </h3>
+                                        <h3 id="client_task_title" class="box-title">Task Running</h3>
                                         <div class="box-tools pull-right">
                                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                                     class="fa fa-minus"></i>
@@ -567,7 +567,7 @@
                     responsive: true,
                     title: {
                         display: true,
-                        text: "Host Name: " + client_data['host_name'] + "       IP: " + client_data['ip_address']
+                        text: "Up Time: " + client_data['up_time']
                     },
                     tooltips: {
                         mode: 'index',
@@ -597,6 +597,8 @@
                     }
                 }
             };
+            $("#client_resource_title").html("Host Name: " + client_data['host_name'] + ",       IP: " + client_data['ip_address']);
+            $('#client_task_title').html('Task running on  ' + client_data['host_name'])
         }
 
         $(function () {
@@ -674,6 +676,8 @@
                 }
                 if ($(this).hasClass('selected')) {
                     $(this).removeClass('selected');
+                    $("#client_resource_title").html('Client Resource Usages');
+                    $("#client_task_title").html('Task Running');
                     client_resource_chart = new Chart(client_resource_usage, empty_client_resource_config);
                 }
                 else {
@@ -691,6 +695,10 @@
                         load_client_resource(client_id);
                         client_resource_chart.update();
                     }, 1000);
+
+
+                    // UPDATE CLIENT TASK TABLE
+
 
                 }
 
