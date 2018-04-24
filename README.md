@@ -1,9 +1,7 @@
 ## Welcome to Computing Zone
 This project is free and opensource. Design and Development by [RAJIV SHARMA](http://technicaldirector.in). 
 
-#### Note : This software is under development process and not ready for production use. 
-
-You can watch and follow this repository for regular development updated. And give me your suggestions and feature requests in [issues section](https://github.com/vfxpipeline/zone/issues) .
+#### Note : This software is under development process and not ready for production use. You can watch and follow this repository for regular development updated. And give me your suggestions and feature requests in [issues section](https://github.com/vfxpipeline/zone/issues) .
 
 ![alt text](http://technicaldirector.in/renderbox2/screenshot/zone1.png)
 Zone is a python based web application design and develop for cluster computing task distributions and monitoring which include services like - Rendering, caching, heavy calculations, data mining and other resources hungry process.
