@@ -67,6 +67,7 @@
                                         <table id="jobs_table" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
+                                                <th>ID</th>
                                                 <th>App</th>
                                                 <th>Department</th>
                                                 <th>Category</th>
@@ -76,6 +77,7 @@
                                                 <th>Comment</th>
                                                 <th>Status</th>
                                                 <th>Priority</th>
+                                                <th>On Completion</th>
 
                                                 <th>Start Frame</th>
                                                 <th>End Frame</th>
@@ -600,9 +602,100 @@
             $("#client_resource_title").html("Host Name: " + client_data['host_name'] + ",       IP: " + client_data['ip_address']);
             $('#client_task_title').html('Task running on  ' + client_data['host_name'])
         }
-
         $(function () {
-            $('#jobs_table').DataTable();
+            var all_jobs_url = "/api/renderbox/job/?format=json";
+            var jobs_table = $('#jobs_table').DataTable({
+                dom: 'Blfrtip',
+                stateSave: true,
+                responsive: true,
+                bPaginate: false,
+                buttons: [
+                    {extend: 'colvis', text: 'Filters '}
+                ],
+                ajax: {
+                    url: all_jobs_url,
+                    dataSrc: ''
+                },
+                columns: [
+                    {"data": "id", "class": "job_id", "visible": true},
+                    {
+                        "data": "app", "class": "v-a-m ", "render": function (app, type, row) {
+                            return `<div class="media media-auto">
+                                        <div class="media-left">
+                                            <div class="avatar">
+                                                <img width=25 height=25
+                                                     src=${ app.icon }
+                                                     alt=${ app.name }
+                                                     title=${ app.name }>
+                                            </div>
+                                        </div>
+                                       <div class="media-body">
+                                            <span class="media-heading">${ app.name }</span>
+                                        </div>
+                                    </div>`;
+                        }
+                    },
+                    {"data": "department", "visible": false, "render": function (department, type, row) {
+                            return department.name;
+                        }},
+                    {"data": "category", "visible": false, "render": function (category, type, row) {
+                            return category.name;
+                        }},
+                    {"data": "group", "visible": false, "render": function (group, type, row) {
+                            return group.name;
+                        }},
+
+                    {"data": "name", "visible": false},
+                    {"data": "comment", "visible": false},
+                    {
+                        "data": "status", "class": "v-a-m ", "render": function (status, type, row) {
+                            return `<div class="media media-auto">
+                                        <div class="media-left">
+                                            <div class="avatar">
+                                                <img width=25 height=25
+                                                     src=${ status.icon }
+                                                     alt=${ status.name }
+                                                     title=${ status.name }>
+                                            </div>
+                                        </div>
+                                       <div class="media-body">
+                                            <span class="media-heading">${ status.name }</span>
+                                        </div>
+                                    </div>`;
+                        }
+                    },
+                    {"data": "priority", "visible": false},
+                    {"data": "on_job_complete", "visible": false},
+
+                    {"data": "start_frame", "visible": false},
+                    {"data": "end_frame", "visible": true},
+                    {"data": "start_time", "visible": false},
+                    {"data": "end_time", "visible": false},
+                    {"data": "submit_time", "visible": false},
+                    {"data": "submit_by", "visible": false},
+                    {"data": "submit_pc", "visible": false},
+                    {"data": "submit_ip", "visible": false},
+
+                    {"data": "chunk_size", "visible": false},
+                    {"data": "file_path", "visible": false},
+                    {"data": "file_size", "visible": false},
+                    {"data": "project_path", "visible": false},
+                    {"data": "output_path", "visible": false}
+                ]
+            });
+
+            // ON CLICK EVENT ON JOBS TABLE
+            jobs_table.on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                }
+                else {
+                    jobs_table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    var job_id = $(this).closest('tr').children('td.job_id').text();
+                    console.log(job_id);
+                }
+            });
 
             var all_clients_url = "/api/renderbox/client/?format=json";
             var farm_table = $('#farm_table').DataTable({

@@ -80,8 +80,8 @@ class Group(models.Model):
 
 class App(models.Model):
     name = models.CharField(max_length=100)
-    icon = models.ImageField(upload_to="icons/apps", default='icons/apps/default.png', null=True, blank=True)
-    win_exe = models.CharField(max_length=255)
+    icon = models.ImageField(upload_to="icons/apps", default='icons/apps/default.png', blank=True)
+    win_exe = models.CharField(max_length=255, null=True, blank=True)
     linux_exe = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
@@ -101,7 +101,7 @@ class Job(models.Model):
     category = models.ForeignKey(JobCategory, on_delete=models.CASCADE, related_name='+')
     group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='+')
 
-    name = models.CharField(max_length=255, null=True, blank=True)
+    name = models.CharField(max_length=255)
     comment = models.CharField(max_length=255, null=True, blank=True)
     status = models.ForeignKey(JobStatus, default=5, on_delete=models.CASCADE, related_name='+')
     priority_choice = (('low', 'Low'),
@@ -110,27 +110,26 @@ class Job(models.Model):
                        ('high', 'High'),
                        ('critical', 'Critical'))
     priority = models.CharField(max_length=50, default='low', choices=priority_choice, blank=True)
+    post_complete = (('nothing', 'Nothing'),
+                     ('movie', 'Build Movie'),
+                     ('archive', 'Archive'),
+                     ('restart', 'Restart'),
+                     ('shutdown', 'Shutdown'),
+                     ('delete', 'Delete'))
+    on_job_complete = models.CharField(max_length=50, default='nothing', choices=post_complete, blank=True)
 
     start_frame = models.FloatField()
     end_frame = models.FloatField()
     start_time = models.DateTimeField(null=True, blank=True)
     end_time = models.DateTimeField(null=True, blank=True)
     submit_time = models.DateTimeField(auto_now_add=True)
-    submit_by = models.ForeignKey(Profile, related_name='submit_by')
-    submit_pc = models.CharField(max_length=100, null=True, blank=True)
-    submit_ip = models.GenericIPAddressField(null=True, blank=True)
-
-    post_complete = (('nothing', 'Nothing'),
-        ('movie', 'Build Movie'),
-        ('archive', 'Archive'),
-        ('restart', 'Restart'),
-        ('shutdown', 'Shutdown'),
-        ('delete', 'Delete'))
-    on_job_complete = models.CharField(max_length=50, default='nothing', choices=post_complete, null=True, blank=True)
+    submit_by = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='submit_by')
+    submit_pc = models.CharField(max_length=100)
+    submit_ip = models.GenericIPAddressField()
 
     chunk_size = models.IntegerField(default=1)
     file_path = models.CharField(max_length=255)
-    file_size = models.FloatField(null=True, blank=True)
+    file_size = models.FloatField()
     project_path = models.CharField(max_length=255, null=True, blank=True)
     output_path = models.CharField(max_length=255, null=True, blank=True)
 

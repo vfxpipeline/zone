@@ -94,7 +94,7 @@ class ClientDataAPI(APIView):
 
 class JobAPI(APIView):
     """
-    Add View Edit and delete client computers
+    Add View Edit and delete jobs
     """
     def get(self, request):
         serializer = JobSerializer(Job.objects.all(), many=True)
