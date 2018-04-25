@@ -64,9 +64,9 @@
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body">
-                                        <table id="jobs_table" class="table table-bordered table-striped">
+                                        <table id="jobs_table" class="table table-bordered table-striped table-hover">
                                             <thead>
-                                            <tr>
+                                                <tr>
                                                 <th>ID</th>
                                                 <th>App</th>
                                                 <th>Department</th>
@@ -94,7 +94,7 @@
                                                 <th>Project Path</th>
                                                 <th>Output Path</th>
 
-                                            </tr>
+                                                </tr>
                                             </thead>
                                         </table>
                                     </div>
@@ -145,9 +145,9 @@
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body">
-                                        <table id="farm_table" class="table table-hover table-responsive">
+                                        <table id="farm_table" class="table table-bordered table-striped table-hover">
                                             <thead>
-                                            <tr>
+                                                <tr>
                                                 <th>ID</th>
                                                 <th>DESCRIPTION</th>
                                                 <th>STATUS</th>
@@ -174,9 +174,8 @@
                                                 <th>MAC</th>
                                                 <th>REGISTER TIME</th>
                                                 <th>SYNC INTERVAL</th>
-                                            </tr>
+                                                </tr>
                                             </thead>
-
                                         </table>
                                     </div>
                                     <!-- /.box-body -->
@@ -607,7 +606,7 @@
             var jobs_table = $('#jobs_table').DataTable({
                 dom: 'Blfrtip',
                 stateSave: true,
-                responsive: true,
+                scrollX: true,
                 bPaginate: false,
                 buttons: [
                     {extend: 'colvis', text: 'Filters '}
@@ -635,18 +634,18 @@
                                     </div>`;
                         }
                     },
-                    {"data": "department", "visible": false, "render": function (department, type, row) {
+                    {"data": "department", "visible": true, "render": function (department, type, row) {
                             return department.name;
                         }},
-                    {"data": "category", "visible": false, "render": function (category, type, row) {
+                    {"data": "category", "visible": true, "render": function (category, type, row) {
                             return category.name;
                         }},
-                    {"data": "group", "visible": false, "render": function (group, type, row) {
+                    {"data": "group", "visible": true, "render": function (group, type, row) {
                             return group.name;
                         }},
 
-                    {"data": "name", "visible": false},
-                    {"data": "comment", "visible": false},
+                    {"data": "name", "visible": true},
+                    {"data": "comment", "visible": true},
                     {
                         "data": "status", "class": "v-a-m ", "render": function (status, type, row) {
                             return `<div class="media media-auto">
@@ -664,23 +663,23 @@
                                     </div>`;
                         }
                     },
-                    {"data": "priority", "visible": false},
-                    {"data": "on_job_complete", "visible": false},
+                    {"data": "priority", "visible": true},
+                    {"data": "on_job_complete", "visible": true},
 
-                    {"data": "start_frame", "visible": false},
+                    {"data": "start_frame", "visible": true},
                     {"data": "end_frame", "visible": true},
-                    {"data": "start_time", "visible": false},
-                    {"data": "end_time", "visible": false},
-                    {"data": "submit_time", "visible": false},
-                    {"data": "submit_by", "visible": false},
-                    {"data": "submit_pc", "visible": false},
-                    {"data": "submit_ip", "visible": false},
+                    {"data": "start_time", "visible": true},
+                    {"data": "end_time", "visible": true},
+                    {"data": "submit_time", "visible": true},
+                    {"data": "submit_by", "visible": true},
+                    {"data": "submit_pc", "visible": true},
+                    {"data": "submit_ip", "visible": true},
 
-                    {"data": "chunk_size", "visible": false},
-                    {"data": "file_path", "visible": false},
-                    {"data": "file_size", "visible": false},
-                    {"data": "project_path", "visible": false},
-                    {"data": "output_path", "visible": false}
+                    {"data": "chunk_size", "visible": true},
+                    {"data": "file_path", "visible": true},
+                    {"data": "file_size", "visible": true},
+                    {"data": "project_path", "visible": true},
+                    {"data": "output_path", "visible": true}
                 ]
             });
 
@@ -701,8 +700,8 @@
             var farm_table = $('#farm_table').DataTable({
                 dom: 'Blfrtip',
                 stateSave: true,
-                responsive: true,
                 bPaginate: false,
+                scrollX: true,
                 buttons: [
                     {extend: 'colvis', text: 'Filters '}
                 ],
@@ -731,29 +730,28 @@
                         }
                     },
                     {"data": "os_platform", "visible": true},
-                    {"data": "os_name", "visible": false},
-                    {"data": "os_username", "visible": false},
-                    {"data": "os_arch", "visible": false},
-                    {"data": "host_name", "visible": false},
-                    {"data": "idle_time", "visible": false},
-                    {"data": "rendering_time", "visible": false},
+                    {"data": "os_name", "visible": true},
+                    {"data": "os_username", "visible": true},
+                    {"data": "os_arch", "visible": true},
+                    {"data": "host_name", "visible": true},
+                    {"data": "idle_time", "visible": true},
+                    {"data": "rendering_time", "visible": true},
                     {"data": "up_time", "visible": true},
-                    {"data": "cpu_name", "visible": false},
-                    {"data": "cpu_core", "visible": false},
-                    {"data": "l2_cache", "visible": false},
-                    {"data": "l3_cache", "visible": false},
-                    {"data": "cpu_usage", "visible": false},
-                    {"data": "total_ram", "visible": false},
-                    {"data": "ram_usage", "visible": false},
-                    {"data": "available_ram", "visible": false},
-                    {"data": "gpu_card", "visible": false},
-                    {"data": "gpu_memory", "visible": false},
-                    {"data": "network_speed", "visible": false},
-                    {"data": "ip_address", "visible": false},
-                    {"data": "mac_address", "visible": false},
-                    {"data": "client_register_time", "visible": false},
-                    {"data": "sync_interval", "visible": false},
-
+                    {"data": "cpu_name", "visible": true},
+                    {"data": "cpu_core", "visible": true},
+                    {"data": "l2_cache", "visible": true},
+                    {"data": "l3_cache", "visible": true},
+                    {"data": "cpu_usage", "visible": true},
+                    {"data": "total_ram", "visible": true},
+                    {"data": "ram_usage", "visible": true},
+                    {"data": "available_ram", "visible": true},
+                    {"data": "gpu_card", "visible": true},
+                    {"data": "gpu_memory", "visible": true},
+                    {"data": "network_speed", "visible": true},
+                    {"data": "ip_address", "visible": true},
+                    {"data": "mac_address", "visible": true},
+                    {"data": "client_register_time", "visible": true},
+                    {"data": "sync_interval", "visible": true}
                 ]
 
             });
