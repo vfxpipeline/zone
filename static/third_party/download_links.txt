@@ -15,3 +15,6 @@ https://github.com/chartjs/Chart.js/archive/v2.7.2.zip
 
 5. Fancybox
 https://github.com/fancyapps/fancybox/archive/v3.3.5.zip
+
+6. Context Menu
+https://github.com/swisnl/jQuery-contextMenu/archive/2.6.4.zip

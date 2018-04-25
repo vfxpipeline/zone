@@ -66,7 +66,7 @@
                                     <div class="box-body">
                                         <table id="jobs_table" class="table table-bordered table-striped table-hover">
                                             <thead>
-                                                <tr>
+                                            <tr>
                                                 <th>ID</th>
                                                 <th>App</th>
                                                 <th>Department</th>
@@ -94,7 +94,7 @@
                                                 <th>Project Path</th>
                                                 <th>Output Path</th>
 
-                                                </tr>
+                                            </tr>
                                             </thead>
                                         </table>
                                     </div>
@@ -147,7 +147,7 @@
                                     <div class="box-body">
                                         <table id="farm_table" class="table table-bordered table-striped table-hover">
                                             <thead>
-                                                <tr>
+                                            <tr>
                                                 <th>ID</th>
                                                 <th>DESCRIPTION</th>
                                                 <th>STATUS</th>
@@ -174,7 +174,7 @@
                                                 <th>MAC</th>
                                                 <th>REGISTER TIME</th>
                                                 <th>SYNC INTERVAL</th>
-                                                </tr>
+                                            </tr>
                                             </thead>
                                         </table>
                                     </div>
@@ -601,6 +601,7 @@
             $("#client_resource_title").html("Host Name: " + client_data['host_name'] + ",       IP: " + client_data['ip_address']);
             $('#client_task_title').html('Task running on  ' + client_data['host_name'])
         }
+
         $(function () {
             var all_jobs_url = "/api/renderbox/job/?format=json";
             var jobs_table = $('#jobs_table').DataTable({
@@ -634,15 +635,21 @@
                                     </div>`;
                         }
                     },
-                    {"data": "department", "visible": true, "render": function (department, type, row) {
+                    {
+                        "data": "department", "visible": true, "render": function (department, type, row) {
                             return department.name;
-                        }},
-                    {"data": "category", "visible": true, "render": function (category, type, row) {
+                        }
+                    },
+                    {
+                        "data": "category", "visible": true, "render": function (category, type, row) {
                             return category.name;
-                        }},
-                    {"data": "group", "visible": true, "render": function (group, type, row) {
+                        }
+                    },
+                    {
+                        "data": "group", "visible": true, "render": function (group, type, row) {
                             return group.name;
-                        }},
+                        }
+                    },
 
                     {"data": "name", "visible": true},
                     {"data": "comment", "visible": true},
@@ -695,6 +702,44 @@
                     console.log(job_id);
                 }
             });
+
+            // JOBS TABLE CONTEXT MENU
+            $(document).contextMenu({
+                selector: '#jobs_table td',
+                callback: function (menu_item_name, options) {
+                    var job_id = $(this).closest('tr').children('td.job_id').text();
+                    switch (menu_item_name) {
+                        case "start": {
+                            console.log(job_id);
+                            break;
+                        }
+                        case "stop": {
+                            break;
+                        }
+                        case "open_project": {
+                            break;
+                        }
+                        case "open_output": {
+                            break;
+                        }
+                        case "log": {
+                            break;
+                        }
+                        case "delete": {
+                            break;
+                        }
+                    }
+                },
+                items: {
+                    "start": {name: "Start job", icon: "fa-power-off"},
+                    "stop": {name: "Stop job", icon: "fa-power-off"},
+                    "open_project": {name: "Open Project folder", icon: "fa-folder"},
+                    "open_output": {name: "Open Output folder", icon: "fa-folder-open"},
+                    "log": {name: "View Log", icon: "fa-file-code"},
+                    "delete": {name: "Delete", icon: "fa-trash"}
+                }
+            });
+
 
             var all_clients_url = "/api/renderbox/client/?format=json";
             var farm_table = $('#farm_table').DataTable({
