@@ -603,7 +603,6 @@
         }
 
         $(function () {
-            var all_jobs_url = "/api/renderbox/job/?format=json";
             var jobs_table = $('#jobs_table').DataTable({
                 dom: 'Blfrtip',
                 stateSave: true,
@@ -613,7 +612,7 @@
                     {extend: 'colvis', text: 'Filters '}
                 ],
                 ajax: {
-                    url: all_jobs_url,
+                    url: "/api/renderbox/job/?format=json",
                     dataSrc: ''
                 },
                 columns: [
@@ -689,7 +688,6 @@
                     {"data": "output_path", "visible": true}
                 ]
             });
-
             // ON CLICK EVENT ON JOBS TABLE
             jobs_table.on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
@@ -702,7 +700,6 @@
                     console.log(job_id);
                 }
             });
-
             // JOBS TABLE CONTEXT MENU
             $(document).contextMenu({
                 selector: '#jobs_table td',
@@ -741,7 +738,6 @@
             });
 
 
-            var all_clients_url = "/api/renderbox/client/?format=json";
             var farm_table = $('#farm_table').DataTable({
                 dom: 'Blfrtip',
                 stateSave: true,
@@ -751,7 +747,7 @@
                     {extend: 'colvis', text: 'Filters '}
                 ],
                 ajax: {
-                    url: all_clients_url,
+                    url: "/api/renderbox/client/?format=json",
                     dataSrc: ''
                 },
                 columns: [
@@ -800,9 +796,8 @@
                 ]
 
             });
-            var client_task_table = $('#client_task_table').DataTable();
-            var refresh_interval = null;
             // ON CLICK EVENT ON FARM TABLE
+            var refresh_interval = null;
             farm_table.on('click', 'tr', function () {
                 if (refresh_interval) {
                     clearInterval(refresh_interval);
@@ -839,6 +834,51 @@
                 }
 
             });
+            // FARM TABLE CONTEXT MENU
+            $(document).contextMenu({
+                selector: '#farm_table td',
+                callback: function (menu_item_name, options) {
+                    var job_id = $(this).closest('tr').children('td.job_id').text();
+                    switch (menu_item_name) {
+                        case "start": {
+                            console.log(job_id);
+                            break;
+                        }
+                        case "stop": {
+                            break;
+                        }
+                        case "open_project": {
+                            break;
+                        }
+                        case "open_output": {
+                            break;
+                        }
+                        case "log": {
+                            break;
+                        }
+                        case "delete": {
+                            break;
+                        }
+                    }
+                },
+                items: {
+                    "start": {name: "Start", icon: "fa-power-off"},
+                    "reboot": {name: "Reboot", icon: "fa-hourglass-start"},
+                    "shutdown": {name: "Shutdown", icon: "fa-power-off"},
+                    "log": {name: "View Log", icon: "fa-file-code"},
+                    "remove": {name: "Remove from farm", icon: "fa-trash"},
+                    "group": {
+                        icon: "fa-object-group",
+                        "name": "Add to Group",
+                        "items": {
+                            "project_a": {"name": "Project A"},
+                            "project_b": {"name": "Project B"}
+                        }
+                    }
+                }
+            });
+
+            var client_task_table = $('#client_task_table').DataTable();
 
 
             /* Flot Interactive Chart*/

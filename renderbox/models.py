@@ -52,7 +52,7 @@ class Client(models.Model):
     sync_interval = models.IntegerField(default=1, null=True, blank=True)
 
     def __str__(self):
-        return self.os_username
+        return self.host_name
 
 
 class Department(models.Model):
@@ -64,10 +64,7 @@ class Department(models.Model):
 
 class Group(models.Model):
     """
-    Groups can be used to organize your farm based on machine configurations (e.g., specs, installed software, etc).
-    For example, if you have several 64-bit machines with 3ds Max installed, you could assign them to groups like
-    3dsmax, or 3dsmax_64bit, or simply 3D. Groups have no impact on the order in which Jobs are rendered,
-    they just help to ensure that Jobs render on machines with proper an appropriate hardware/software setup.
+    Groups can be used to organize your farm based on projects
     If you don’t care about grouping your machines, you can simply use the default ‘none’ Group.
     """
     name = models.CharField(max_length=50)
@@ -79,6 +76,9 @@ class Group(models.Model):
 
 
 class App(models.Model):
+    """
+    MAYA, HOUDINI, NUKE, REALFLOW
+    """
     name = models.CharField(max_length=100)
     icon = models.ImageField(upload_to="icons/apps", default='icons/apps/default.png', blank=True)
     win_exe = models.CharField(max_length=255, null=True, blank=True)
@@ -86,6 +86,20 @@ class App(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class AppPlugin(models.Model):
+    """
+
+    """
+    app = models.ForeignKey(App, on_delete=models.CASCADE, related_name='+')
+    name = models.CharField(max_length=100)
+    icon = models.ImageField(upload_to="icons/apps", default='icons/apps/default.png', blank=True)
+    win_exe = models.CharField(max_length=255, null=True, blank=True)
+    linux_exe = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return "{}_{}".format(self.app.name, self.name)
 
 
 class JobCategory(models.Model):
