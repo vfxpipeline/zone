@@ -30,13 +30,14 @@
                         Farm</a></li>
                     <li class="active"><a style="color: #d56600" href="#jobs_tab" data-toggle="tab"><i
                             class="fa fa-tasks"></i> View Jobs</a></li>
+{#                    <li><button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-job-modal"><i class="fa fa-rocket">Python Script</i></button></li>#}
                     <li class="dropdown">
                         <a style="color: #18a600" class="dropdown-toggle" data-toggle="dropdown" href="#"><i
                                 class="fa fa-rocket"></i>
                             Submit Job <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img
+                            <li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#add-job-modal" href="#"><img
                                     src="/media/icons/apps/maya.png" width="20" height="20"> Maya Job</a></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img
                                     src="/media/icons/apps/houdini.png" width="20" height="20"> Houdini Job</a></li>
@@ -52,6 +53,33 @@
                         2.0
                     </li>
                 </ul>
+
+                <!-- ADD JOB MODALS -->
+                <div class="modal modal-success fade" id="add-job-modal">
+                    <div class="modal-dialog">
+                        <form class="form-horizontal uniform" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Maya Job</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline pull-left"
+                                        data-dismiss="modal">Close
+                                </button>
+                                <button type="submit" class="btn btn-outline">Submit</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
 
                 <div class="tab-content">
                     <!-- / Jobs tab-pane -->
