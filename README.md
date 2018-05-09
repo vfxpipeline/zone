@@ -6,6 +6,7 @@ This project is free and opensource. Design and Development by [RAJIV SHARMA](ht
 ![alt text](http://technicaldirector.in/renderbox2/screenshot/zone1.png)
 Zone is a python based web application design and develop for cluster computing task distributions and monitoring which include services like - Rendering, caching, heavy calculations, data mining and other resources hungry process.
 
+![alt text](http://technicaldirector.in/renderbox2/screenshot/renderbox_v001.png)
 ![alt text](http://technicaldirector.in/renderbox2/screenshot/screen01.jpg)
 ![alt text](http://technicaldirector.in/renderbox2/screenshot/screen02.PNG)
 ![alt text](http://technicaldirector.in/renderbox2/screenshot/screen05.PNG)
